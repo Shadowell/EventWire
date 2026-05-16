@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420" viewBox="0 0 860 420" role="img" aria-labelledby="title desc">
+  <title id="title">Prediction market signal grid</title>
+  <desc id="desc">A compact visual grid of market signal bars, price movement lines, and alert markers.</desc>
+  <rect width="860" height="420" fill="#f5f1e7"/>
+  <g opacity="0.45" stroke="#151515" stroke-width="1">
+    <path d="M40 80H820"/>
+    <path d="M40 140H820"/>
+    <path d="M40 200H820"/>
+    <path d="M40 260H820"/>
+    <path d="M40 320H820"/>
+    <path d="M120 40V360"/>
+    <path d="M220 40V360"/>
+    <path d="M320 40V360"/>
+    <path d="M420 40V360"/>
+    <path d="M520 40V360"/>
+    <path d="M620 40V360"/>
+    <path d="M720 40V360"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M54 286C130 240 160 268 222 212C278 161 320 178 378 130C438 80 488 96 546 118C610 142 660 96 808 62" stroke="#165dff" stroke-width="8"/>
+    <path d="M54 316C140 312 182 276 246 292C310 308 350 258 408 266C470 274 524 212 588 232C660 255 706 210 808 186" stroke="#0f8a5f" stroke-width="7"/>
+    <path d="M54 166C130 172 184 120 246 142C308 164 346 118 404 98C472 75 528 92 588 84C660 76 712 122 808 106" stroke="#d55c2f" stroke-width="6"/>
+  </g>
+  <g>
+    <circle cx="546" cy="118" r="13" fill="#ffe05d" stroke="#151515" stroke-width="4"/>
+    <circle cx="588" cy="232" r="13" fill="#f05a5a" stroke="#151515" stroke-width="4"/>
+    <circle cx="404" cy="98" r="13" fill="#63d297" stroke="#151515" stroke-width="4"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#151515">
+    <text x="42" y="394">PRICE MOVE</text>
+    <text x="340" y="394">VOLUME SPIKE</text>
+    <text x="642" y="394">LIQUIDITY GAP</text>
+  </g>
+</svg>
+

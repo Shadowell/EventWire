@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EventWire</title>
+    <meta name="description" content="Daily prediction-market anomaly alerts delivered through a private Telegram channel.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="EventWire home">
+        <span class="brand-mark">EW</span>
+        <span>EventWire</span>
+      </a>
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#feed">Signals</a>
+        <a href="#value">What You Get</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="workspace-shell" aria-labelledby="page-title">
+        <div class="intro-panel">
+          <p class="eyebrow">Market intelligence, not trading advice</p>
+          <h1 id="page-title">Spot event-market anomalies early.</h1>
+          <p class="lede">A daily signal feed for prediction-market traders who want price moves, volume spikes, new-market heat, and resolution-risk alerts without refreshing markets all day.</p>
+
+          <div class="cta-row">
+            <a class="button primary" href="#pricing">Join Founding Pro</a>
+            <a class="button secondary" href="#feed">View sample alerts</a>
+          </div>
+
+          <dl class="mini-metrics" aria-label="Sample feed metrics">
+            <div>
+              <dt id="metric-total">0</dt>
+              <dd>sample alerts</dd>
+            </div>
+            <div>
+              <dt id="metric-score">0</dt>
+              <dd>avg signal score</dd>
+            </div>
+            <div>
+              <dt id="metric-top">0</dt>
+              <dd>top signal</dd>
+            </div>
+          </dl>
+        </div>
+
+        <section class="terminal-panel" id="feed" aria-labelledby="feed-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Sample public feed</p>
+              <h2 id="feed-title">Live Signal Feed</h2>
+            </div>
+            <span class="status-pill">sample data</span>
+          </div>
+
+          <div class="control-strip" aria-label="Signal filters">
+            <button class="chip active" type="button" data-category="All">All</button>
+            <button class="chip" type="button" data-category="Crypto">Crypto</button>
+            <button class="chip" type="button" data-category="Politics">Politics</button>
+            <button class="chip" type="button" data-category="Sports">Sports</button>
+            <button class="chip" type="button" data-category="Tech">Tech</button>
+            <label class="score-filter">
+              Score
+              <input id="score-input" type="range" min="50" max="95" value="70">
+              <span id="score-label">70+</span>
+            </label>
+          </div>
+
+          <div class="signal-grid" id="signal-list" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section class="visual-band" id="value" aria-label="Subscriber value">
+        <div class="visual-copy">
+          <p class="eyebrow">What you get</p>
+          <h2>Turn market noise into a short daily brief.</h2>
+          <p>Founding Pro members receive a private Telegram feed with anomaly alerts, daily summaries, and early access to watchlist requests. The public page shows a sample; the paid channel carries the full stream.</p>
+        </div>
+        <img src="assets/signal-grid.svg" alt="Stylized prediction market signal grid">
+      </section>
+
+      <section class="business-grid" aria-label="Subscription plan and delivery flow">
+        <article class="pricing-card" id="pricing">
+          <p class="eyebrow">First paid offer</p>
+          <h2>Founding Pro</h2>
+          <div class="price-line">
+            <span class="currency">$</span>
+            <span class="amount">9</span>
+            <span class="period">/month</span>
+          </div>
+          <p class="sr-only">Founding Pro costs $9/month.</p>
+          <p class="card-copy">For the first 50 members. Delivered through a Private Telegram Channel while the product is still early.</p>
+          <ul class="feature-list">
+            <li>Near-real-time anomaly alerts</li>
+            <li>Daily complete market brief</li>
+            <li>Price move and volume spike monitoring</li>
+            <li>Resolution-risk reminders</li>
+            <li>Early access to watchlist requests</li>
+          </ul>
+          <button class="button primary full" type="button" id="checkout-button">Join Founding Pro</button>
+        </article>
+
+        <article class="delivery-card" id="delivery">
+          <p class="eyebrow">Delivery</p>
+          <h2>Private Telegram Channel</h2>
+          <ol class="flow-list">
+            <li><span>01</span> Join Founding Pro through checkout.</li>
+            <li><span>02</span> Receive the private Telegram invite.</li>
+            <li><span>03</span> Read alerts, daily briefs, and watchlist notes.</li>
+            <li><span>04</span> Cancel any time while the founding price is active.</li>
+          </ol>
+        </article>
+
+        <article class="guardrail-card" id="faq">
+          <p class="eyebrow">FAQ</p>
+          <h2>No Profit Promises</h2>
+          <p>This is market intelligence from public prediction-market data. It is not financial advice, a trade recommendation, or an automated trading service.</p>
+          <div class="word-grid" aria-label="Allowed product language">
+            <span>anomaly alerts</span>
+            <span>volume monitor</span>
+            <span>resolution risk</span>
+            <span>public data</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

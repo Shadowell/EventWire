@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EventWire 运营页</title>
+    <meta name="description" content="给你看的中文运营页，用于查看 Lemon Squeezy 收款配置和每日分发自动化。">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <header class="topbar" aria-label="运营导航">
+      <a class="brand" href="ops.html" aria-label="EventWire 运营页">
+        <span class="brand-mark">EW</span>
+        <span>运营控制台</span>
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="index.html">返回英文用户页</a>
+        <a href="#checkout">收款配置</a>
+        <a href="#distribution">自动分发</a>
+        <a href="docs/eventwire.md">产品文档</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="ops-hero" aria-labelledby="ops-title">
+        <div class="intro-panel">
+          <p class="eyebrow">给你看的运营页</p>
+          <h1 id="ops-title">先收款，<br>再自动分发。</h1>
+          <p class="lede">这个页面不面向订阅用户，专门给你看商业闭环：Lemon Squeezy 收款、Telegram 交付、每日自动分发和生成文案预览。</p>
+          <div class="cta-row">
+            <a class="button primary" href="#checkout">配置 Lemon</a>
+            <a class="button secondary" href="#distribution">查看分发</a>
+          </div>
+        </div>
+
+        <section class="terminal-panel" id="checkout" aria-labelledby="checkout-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Lemon Squeezy 收款配置</p>
+              <h2 id="checkout-title">Founding Pro $9/month</h2>
+            </div>
+            <span class="status-pill">MVP</span>
+          </div>
+          <ol class="flow-list compact-flow">
+            <li><span>01</span> 在 Lemon Squeezy 创建订阅商品：EventWire - Founding Pro。</li>
+            <li><span>02</span> 定价设置为 $9/month，并复制 hosted checkout URL。</li>
+            <li><span>03</span> 把链接填到 <code>config.js</code> 的 <code>lemonSqueezyCheckoutUrl</code>。</li>
+            <li><span>04</span> 付款后先手动发 Telegram 邀请链接，后续再接 webhook。</li>
+          </ol>
+          <button class="button primary full" type="button" id="checkout-button">测试 Lemon Squeezy Checkout</button>
+        </section>
+      </section>
+
+      <section class="distribution-section" id="distribution" aria-labelledby="distribution-title">
+        <div class="distribution-copy">
+          <p class="eyebrow">每日自动分发</p>
+          <h2 id="distribution-title">X / Reddit / Discord / Telegram / Substack</h2>
+          <p>每天生成一份公共 teaser 和私密频道摘要。脚本默认 dry-run；配置密钥后，Discord 和 Telegram 可以直接发送，X / Reddit / Substack 先通过外部 automation webhook 处理。</p>
+        </div>
+        <div class="channel-list" id="channel-list" aria-label="分发渠道状态"></div>
+        <pre class="preview-console" id="distribution-preview" aria-label="生成文案预览"></pre>
+      </section>
+
+      <section class="business-grid" aria-label="运营说明">
+        <article class="delivery-card">
+          <p class="eyebrow">启动顺序</p>
+          <h2>不要先做大系统</h2>
+          <ol class="flow-list">
+            <li><span>01</span> 先拿 Lemon Squeezy 链接开始收 $9/month。</li>
+            <li><span>02</span> 先手动审核用户并拉进 Telegram 私密频道。</li>
+            <li><span>03</span> 每天跑 dry-run，看生成文案是否值得公开发布。</li>
+            <li><span>04</span> 有 3-5 个付费用户后，再接自动邀请和取消订阅 webhook。</li>
+          </ol>
+        </article>
+
+        <article class="guardrail-card">
+          <p class="eyebrow">边界</p>
+          <h2>只卖情报，不卖承诺</h2>
+          <p>对外页面只讲 market intelligence、anomaly alerts、public data。不要写稳赚、胜率、套利建议，也不要代客交易。</p>
+          <div class="word-grid" aria-label="运营关键词">
+            <span>公开数据</span>
+            <span>异常提醒</span>
+            <span>Telegram 交付</span>
+            <span>Lemon 收款</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

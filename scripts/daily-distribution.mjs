@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import { buildDailyDistribution, getDistributionChannels } from "../distribution.mjs";
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { buildDailyDistribution, buildDistributionArtifacts, getDistributionChannels } from "../distribution.mjs";
 
 const sampleSignals = [
   { category: "Crypto", score: 94, title: "BTC weekly strike market repriced fast", priceMove: 13, volume: "+420%" },
@@ -53,12 +55,25 @@ async function sendAutomationWebhook(name, url, payload) {
 
 async function main() {
   const dryRun = !process.argv.includes("--send");
+  const shouldWrite = process.argv.includes("--write");
   const date = getArg("date", new Date().toISOString().slice(0, 10));
+  const outDir = getArg("out-dir", "dist/daily");
   const checkoutUrl = getArg(
     "checkout-url",
     process.env.LEMON_SQUEEZY_CHECKOUT_URL || "https://your-store.lemonsqueezy.com/buy/eventwire-founding-pro",
   );
   const distribution = buildDailyDistribution({ date, checkoutUrl, signals: sampleSignals });
+
+  if (shouldWrite) {
+    const artifacts = buildDistributionArtifacts(distribution);
+    for (const artifact of artifacts) {
+      const target = join(outDir, artifact.path);
+      await mkdir(dirname(target), { recursive: true });
+      await writeFile(target, artifact.content, "utf8");
+    }
+    console.log(JSON.stringify({ wrote: artifacts.map((artifact) => join(outDir, artifact.path)) }, null, 2));
+    return;
+  }
 
   if (dryRun) {
     console.log(JSON.stringify({ channels: getDistributionChannels(), distribution }, null, 2));

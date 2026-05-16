@@ -49,6 +49,8 @@ test("ops page is Chinese and exposes internal automation controls", async () =>
   assert.match(html, /每日自动分发/);
   assert.match(html, /X \/ Reddit \/ Discord \/ Telegram \/ Substack/);
   assert.match(html, /生成文案预览/);
+  assert.match(html, /上线检查清单/);
+  assert.match(html, /GitHub Pages/);
   assert.match(html, /返回英文用户页/);
 });
 
@@ -110,4 +112,39 @@ test("daily post generator creates platform-specific copy", async () => {
   assert.match(plan.posts.discord.body, /Top signal/);
   assert.match(plan.posts.telegram.body, /Founding Pro/);
   assert.match(plan.posts.substack.markdown, /## Top Signals/);
+});
+
+test("daily distribution can be exported as publish-ready artifacts", async () => {
+  const { buildDailyDistribution, buildDistributionArtifacts } = await import(new URL("distribution.mjs", root));
+  const plan = buildDailyDistribution({
+    date: "2026-05-16",
+    checkoutUrl: "https://example.lemonsqueezy.com/buy/eventwire-founding-pro",
+    signals: [
+      { category: "Crypto", score: 94, title: "BTC weekly strike market repriced fast", priceMove: 13, volume: "+420%" },
+    ],
+  });
+  const artifacts = buildDistributionArtifacts(plan);
+
+  assert.deepEqual(
+    artifacts.map((artifact) => artifact.path),
+    [
+      "2026-05-16/x.txt",
+      "2026-05-16/reddit.md",
+      "2026-05-16/discord.txt",
+      "2026-05-16/telegram.txt",
+      "2026-05-16/substack.md",
+      "2026-05-16/distribution.json",
+    ],
+  );
+  assert.match(artifacts.find((artifact) => artifact.path.endsWith("x.txt")).content, /EventWire/);
+  assert.match(artifacts.find((artifact) => artifact.path.endsWith("substack.md")).content, /# EventWire/);
+  assert.equal(JSON.parse(artifacts.find((artifact) => artifact.path.endsWith("distribution.json")).content).date, "2026-05-16");
+});
+
+test("github pages workflow publishes the static site", async () => {
+  const workflow = await readProjectFile(".github/workflows/static-pages.yml");
+
+  assert.match(workflow, /Deploy Static Site/);
+  assert.match(workflow, /actions\/upload-pages-artifact/);
+  assert.match(workflow, /actions\/deploy-pages/);
 });

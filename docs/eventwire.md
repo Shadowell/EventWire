@@ -155,6 +155,21 @@ node scripts/daily-distribution.mjs
 
 Use GitHub Actions, cron, or any server scheduler to run it once per day.
 
+Generate local publish drafts:
+
+```text
+node scripts/daily-distribution.mjs --write --date=2026-05-16
+```
+
+This writes:
+
+- `dist/daily/YYYY-MM-DD/x.txt`
+- `dist/daily/YYYY-MM-DD/reddit.md`
+- `dist/daily/YYYY-MM-DD/discord.txt`
+- `dist/daily/YYYY-MM-DD/telegram.txt`
+- `dist/daily/YYYY-MM-DD/substack.md`
+- `dist/daily/YYYY-MM-DD/distribution.json`
+
 Environment variables:
 
 ```text

@@ -137,3 +137,33 @@ export function buildDailyDistribution({ date, signals, checkoutUrl }) {
     },
   };
 }
+
+export function buildDistributionArtifacts(distribution) {
+  const basePath = distribution.date;
+  return [
+    {
+      path: `${basePath}/x.txt`,
+      content: distribution.posts.x.body,
+    },
+    {
+      path: `${basePath}/reddit.md`,
+      content: `# ${distribution.posts.reddit.title}\n\n${distribution.posts.reddit.body}`,
+    },
+    {
+      path: `${basePath}/discord.txt`,
+      content: distribution.posts.discord.body,
+    },
+    {
+      path: `${basePath}/telegram.txt`,
+      content: distribution.posts.telegram.body,
+    },
+    {
+      path: `${basePath}/substack.md`,
+      content: distribution.posts.substack.markdown,
+    },
+    {
+      path: `${basePath}/distribution.json`,
+      content: `${JSON.stringify(distribution, null, 2)}\n`,
+    },
+  ];
+}

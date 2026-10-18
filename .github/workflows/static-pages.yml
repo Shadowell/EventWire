@@ -27,7 +27,7 @@ env:
 jobs:
   pages:
     name: GitHub Pages
-    if: env.DEPLOY_ENGINE == 'pages'
+    if: ((github.event_name == 'workflow_dispatch' && inputs.engine) || vars.DEPLOY_ENGINE || 'server') == 'pages'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -43,7 +43,7 @@ jobs:
 
   server:
     name: 自托管静态站点
-    if: env.DEPLOY_ENGINE == 'server'
+    if: ((github.event_name == 'workflow_dispatch' && inputs.engine) || vars.DEPLOY_ENGINE || 'server') == 'server'
     runs-on: [self-hosted, linux, x64, project-eventwire, env-production, role-deploy]
     steps:
       - uses: actions/checkout@v4

@@ -62,4 +62,4 @@ jobs:
           ln -sfn "$release" /opt/eventwire/current.next
           mv -Tf /opt/eventwire/current.next /opt/eventwire/current
           printf '%s\n' "$sha" > /opt/eventwire/deploy/last_deployed_sha
-          curl -fsS --max-time 5 http://127.0.0.1:3334/ >/dev/null
+          curl -fsS --max-time 5 http://127.0.0.1:3335/ >/dev/null

@@ -9,7 +9,7 @@ on:
       engine:
         description: 发布执行位置；default 使用仓库 DEPLOY_ENGINE 变量
         type: choice
-        options: [pages, server]
+        options: [server, github, pages]
         default: server
 
 permissions:
@@ -27,7 +27,7 @@ env:
 jobs:
   pages:
     name: GitHub Pages
-    if: ((github.event_name == 'workflow_dispatch' && inputs.engine) || vars.DEPLOY_ENGINE || 'server') == 'pages'
+    if: contains(fromJSON('["pages", "github"]'), ((github.event_name == 'workflow_dispatch' && inputs.engine) || vars.DEPLOY_ENGINE || 'server'))
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
